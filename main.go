@@ -5,6 +5,7 @@ import (
 
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -32,10 +33,10 @@ func tree(path string, dep int) {
 			for t := dep; t >= 0; t-- {
 				xfmt.PrintMsg("--", xfmt.White)
 			}
-			xfmt.PrintMsg(path, xfmt.Blue)
+			xfmt.PrintMsg(info.Name(), xfmt.Blue)
 			xfmt.PrintlnMsg(" \\", xfmt.Blue)
 			println()
-			tree(path + "/" + info.Name(), dep+2)
+			tree(path + string(filepath.Separator) + info.Name(), dep+2)
 			continue
 		}
 
